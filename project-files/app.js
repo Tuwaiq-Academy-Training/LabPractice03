@@ -1,10 +1,15 @@
 const router = require("./Routes");
 const app = require("express")();
-const mongoose = require("mongoose").connect(
-  "http://localhost:27017/{your db name}"
-);
-const PORT = 3000;
+app.use(express.json());
 
-app.use(router);
+const users= require('./model/user');
+const comments= require('./model/comments');
+const cours= require('./model/course');
 
-app.listen(PORT, () => console.log(`express listening on port ${PORT}`));
+const routes= require('./Routes/index');
+app.use('/',router);
+
+const mongoose = require("mongoose").connect('http://localhost:27017/quizlet');
+
+
+app.listen(3000, () => console.log('Quizlet is started on port 3000'));
